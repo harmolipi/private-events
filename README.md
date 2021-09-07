@@ -1,16 +1,24 @@
-# Private Events
-Created as part of [The Odin Project](https://www.theodinproject.com) curriculum.
+# README
 
-View on [Github](https://github.com/harmolipi/private-events).
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### Functionality
+Things you may want to cover:
 
-This is the [Private Events Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/authentication) project, where I make a site that allows users to create events and manage uuser signups.
+* Ruby version
 
-### Thoughts
+* System dependencies
 
-Tbd...
+* Configuration
 
-God bless.
+* Database creation
 
--Niko Birbilis
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
