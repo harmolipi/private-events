@@ -1,7 +1,7 @@
 <h1><%= @user.username %>'s Events</h1>
 <% @user.events.each do |event| %>
   <ul>
-    <li><%= event.title %></li>
+    <li><%= link_to event.title, event_path(event) %></li>
     <ul>
       <li><%= event.description %></li>
       <li><%= event.date %></li>

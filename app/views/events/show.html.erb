@@ -1,4 +1,9 @@
 <h2><%= @event.title %></h2>
-<p><%= @event.description %></p>
-<p><%= @event.date %></p>
-<p><%= @event.location %></p>
+<p><strong>Description: </strong><%= @event.description %></p>
+<p><strong>Date: </strong><%= @event.date %></p>
+<p><strong>Location: </strong><%= @event.location %></p>
+<% if @event.rsvps.where(attendee_id: current_user.id).exists? %>
+  <p><%= link_to 'Delete RSVP', rsvp_path(attended_event_id: @event.id), method: :delete %></p>
+<% else %>
+  <p><%= link_to 'RSVP', rsvps_path(attended_event_id: @event.id), method: :post %></p>
+<% end %>
