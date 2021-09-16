@@ -4,9 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :email, presence: true
-  validates :password, presence: true
-
   has_many :rsvps, foreign_key: :attendee_id
   has_many :attended_events, through: :rsvps
   has_many :events, foreign_key: :creator_id
