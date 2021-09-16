@@ -1,12 +1,5 @@
 <h1>Upcoming Events</h1>
 
-<% @events.each do |event| %>
-  <ul>
-    <li><%= link_to event.title, event_path(event) %></li>
-    <ul>
-      <li><%= event.description %></li>
-      <li><%= event.date %></li>
-      <li><%= event.location %></li>
-    </ul>
-  </ul>
-<% end %>
+<div class="content">
+  <%= render 'feed' %>
+</div>

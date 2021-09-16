@@ -1,11 +1,11 @@
-<h1><%= @user.username %>'s Events</h1>
-<% @user.events.each do |event| %>
-  <ul>
-    <li><%= link_to event.title, event_path(event) %></li>
-    <ul>
-      <li><%= event.description %></li>
-      <li><%= event.date %></li>
-      <li><%= event.location %></li>
-    </ul>
-  </ul>
-<% end %>
+<div class="content">
+  <h1><%= @user.username %></h1>
+  <h2>Created</h2>
+  <%= render 'events/created_event_details' %>
+
+  <h2>Attending (upcoming)</h2>
+  <%= render 'events/attending_events' %>
+
+  <h2>Attended (past)</h2>
+  <%= render 'events/attended_events' %>
+</div>
