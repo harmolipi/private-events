@@ -8,14 +8,6 @@ class Event < ApplicationRecord
   has_many :attendees, through: :rsvps
   belongs_to :creator, class_name: 'User'
 
-  # scope :past, -> { where('date < ?', Date.today) }
-  # scope :future, -> { where('date > ?', Date.today) }
-
-  def self.past
-    Event.all.where('date < ?', Date.today)
-  end
-
-  def self.future
-    Event.all.where('date > ?', Date.today)
-  end
+  scope :past, -> { where('date < ?', Date.today) }
+  scope :future, -> { where('date > ?', Date.today) }
 end
