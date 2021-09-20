@@ -21,7 +21,7 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
-    <nav class="navbar is-light">
+    <nav class="navbar is-info">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do %>
           <h1 class="title is-5">Private Events</h1>
@@ -31,17 +31,20 @@
         <div class="navbar-end">
           <% if user_signed_in? %>
             <p class="navbar-item">
-              <%= link_to current_user.username, user_path(id: current_user.id), class: 'button' %>
+              <%= link_to 'New Event', new_event_path, class: "button is-info is-inverted" %>
             </p>
             <p class="navbar-item">
-              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'button' %>
+              <%= link_to current_user.username, user_path(id: current_user.id), class: 'is-info button' %>
+            </p>
+            <p class="navbar-item">
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'is-info button' %>
             </p>
           <% else %>
             <p class="navbar-item">
-              <%= link_to 'Sign up', new_user_registration_path, class: 'button' %>
+              <%= link_to 'Sign up', new_user_registration_path, class: 'is-info button' %>
             </p>
             <p class="navbar-item">
-              <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
+              <%= link_to 'Sign in', new_user_session_path, class: 'is-info button' %>
             </p>
           <% end %>
         </div>
