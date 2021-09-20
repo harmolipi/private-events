@@ -16,6 +16,6 @@
 
  @import "bulma";
 
-//  article.card {
-//   margin-bottom: 40px;
-//  }
+ .notification:not(:last-child) {
+  margin-bottom: 0;
+}
