@@ -21,13 +21,15 @@
         <div class="card-content">
           <%= @event.description %>
         </div>
-        <footer class="card-footer">
-          <% if @event.rsvps.where(attendee_id: current_user.id).exists? %>
-            <%= link_to 'Delete RSVP', rsvp_path(attended_event_id: @event.id), method: :delete, class: "card-footer-item" %>
-          <% elsif  %>
-            <%= link_to 'RSVP', rsvps_path(attended_event_id: @event.id), method: :post, class: "card-footer-item" %>
-          <% end %>
-        </footer>
+        <% if user_signed_in? %>
+          <footer class="card-footer">
+            <% if @event.rsvps.where(attendee_id: current_user.id).exists? %>
+              <%= link_to 'Delete RSVP', rsvp_path(attended_event_id: @event.id), method: :delete, class: "card-footer-item" %>
+            <% elsif  %>
+              <%= link_to 'RSVP', rsvps_path(attended_event_id: @event.id), method: :post, class: "card-footer-item" %>
+            <% end %>
+          </footer>
+        <% end %>
       </article>
     </div>
     <div class="column"></div>
