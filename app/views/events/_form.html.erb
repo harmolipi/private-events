@@ -1,0 +1,47 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :title,
+                required: true,
+                autofocus: true,
+                wrapper: false,
+                input_html: { autocomplete: "text", class: "input" },
+                label_html: { class: "label" } %>
+    </div>
+  </div>
+    
+  <div class="field">
+    <div class="control">
+      <%= f.input :description,
+                required: true,
+                wrapper: false,
+                input_html: { autocomplete: "text", class: "input" },
+                label_html: { class: "label" } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :date,
+                html5: true,
+                required: true,
+                wrapper: false,
+                input_html: { autocomplete: "date", class: "input" },
+                label_html: { class: "label" } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :location,
+                required: true,
+                wrapper: false,
+                input_html: { autocomplete: "text", class: "input" },
+                label_html: { class: "label" } %>
+    </div>
+  </div>
+  <%= f.button :submit, class: "button is-info" %>
+<% end %>
