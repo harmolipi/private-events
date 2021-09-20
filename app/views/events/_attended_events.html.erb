@@ -9,20 +9,10 @@
         <div class="card-header">
           <div class="card-header-title">
             <div class="container">
-              <div class="columns">
-                <div class="column">
-                  <p class="title is-4"><%= link_to event.title, event_path(event) %></p>
-                  <p class="subtitle is-6"><%= link_to event.creator.username, event.creator %> </p>
-                </div>
-                <div class="column is-narrow">
-                  <p class="is-6"><%= event.date.strftime("%D") %> | <%= event.location %> </p>
-                </div>
-              </div>
+              <p class="title is-4"><%= link_to event.title, event_path(event) %></p>
+              <p class="subtitle is-6"><%= event.date.strftime("%D") %> | <%= event.location %></p>
             </div>
           </div>
-        </div>
-        <div class="card-content">
-          <%= event.description %>
         </div>
       </article>
     <% end %>
