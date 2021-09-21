@@ -1,12 +1,6 @@
 <section class="section">
-  <h1 class="title is-1"><%= @user.username %></h1>
+  <h2 class="title is-2"><%= @user.username %></h2>
   <div class="container">
-    <%# <div class="columns"> %>
-      <%# <div class="column"></div> %>
-      <%# <div class="column"> %>
-        <%= render 'user_events' %>
-      <%# </div> %>
-      <%# <div class="column"></div> %>
-    <%# </div> %>
+    <%= render 'user_events' %>
   </div>
 </section>
