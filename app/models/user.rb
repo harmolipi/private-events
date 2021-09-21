@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :rsvps, foreign_key: :attendee_id
   has_many :attended_events, through: :rsvps
+  has_many :invitations, foreign_key: :invitee_id
+  has_many :invited_events, through: :invitations, source: :event
   has_many :events, foreign_key: :creator_id
 end
