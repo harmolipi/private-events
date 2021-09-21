@@ -23,10 +23,12 @@
         </div>
         <% if user_signed_in? %>
           <footer class="card-footer">
-            <% if @event.rsvps.where(attendee_id: current_user.id).exists? %>
-              <%= link_to 'Delete RSVP', rsvp_path(attended_event_id: @event.id), method: :delete, class: "card-footer-item" %>
-            <% elsif  %>
-              <%= link_to 'RSVP', rsvps_path(attended_event_id: @event.id), method: :post, class: "card-footer-item" %>
+            <% if @event.creator == current_user %>
+              <%= link_to 'Invite guests', invitations_path(event_id: @event.id), method: :get, class: "card-footer-item" %>
+            <% elsif @event.rsvps.exists?(attendee_id: current_user.id) %>
+              <%= link_to "You're attending the event! Cancel?", rsvp_path(attended_event_id: @event.id), method: :delete, class: "card-footer-item" %>
+            <% elsif @event.invitations.exists?(invitee_id: current_user.id) %>
+              <%= link_to "You're invited! Accept?", rsvps_path(attended_event_id: @event.id), method: :post, class: "card-footer-item" %>
             <% end %>
             <% if @event.creator == current_user %>
               <%= link_to 'Edit', edit_event_path(@event), class: "card-footer-item" %>

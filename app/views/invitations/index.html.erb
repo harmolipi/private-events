@@ -1,0 +1,46 @@
+<section class="section">
+  <h2 class="title is-2"><%= link_to @event.title, event_path(@event) %> invitations</h2>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-two-thirds">
+      <div class="table-container">
+        <table class="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Invite</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <% next if user == current_user %>
+              <tr>
+                <td><%= link_to user.username, user_path(user), class: "is-fullwidth" %></td>
+                <td>
+                  <% if user.invited?(@event.id) %>
+                    <%= link_to "Cancel invite", invitation_path(Invitation.find_by(invitee_id: user.id, event_id: @event.id)), method: :delete, class: "button is-small is-danger" %>
+                  <% else %>
+                    <%= link_to "Invite", invitations_path(invitee_id: user.id, event_id: @event.id), method: :post, class: "button is-small is-primary" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if user.invited?(@event.id) %>
+                    <% if user.accepted?(@event.id) %>
+                      <span class="tag is-success">Accepted</span>
+                    <% else %>
+                      <span class="tag is-warning">Invited</span>
+                    <% end %>
+                  <% else %>
+                    <span class="tag is-danger">Not Invited</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="column"></div>
+  </div>
+</section>
