@@ -37,6 +37,17 @@
           </footer>
         <% end %>
       </article>
+
+      <article class="panel">
+        <p class="panel-heading">Attending:</p>
+        <% if @event.rsvps.none? %>
+          <div class="panel-block">No attendees yet!</div>
+        <% else %>
+          <% @event.rsvps.each do |rsvp| %>
+            <%= link_to rsvp.attendee.username, user_path(rsvp.attendee), class: "panel-block" %>
+          <% end %>
+        <% end %>
+      </article>
     </div>
     <div class="column"></div>
   </div>
