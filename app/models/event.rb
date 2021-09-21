@@ -4,10 +4,10 @@ class Event < ApplicationRecord
   validates :date, presence: true
   validates :location, presence: true
 
-  has_many :rsvps, foreign_key: :attended_event_id
-  has_many :attendees, through: :rsvps
-  has_many :invitations, foreign_key: :event_id
-  has_many :invitees, through: :invitations
+  has_many :rsvps, foreign_key: :attended_event_id, dependent: :destroy
+  has_many :attendees, through: :rsvps, dependent: :destroy
+  has_many :invitations, foreign_key: :event_id, dependent: :destroy
+  has_many :invitees, through: :invitations, dependent: :destroy
   belongs_to :creator, class_name: 'User'
 
   scope :past, -> { where('date < ?', Date.today) }

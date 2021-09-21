@@ -1,5 +1,5 @@
 class Rsvp < ApplicationRecord
-  validates :attendee_id, presence: true
+  validates :attendee_id, presence: true, uniqueness: { scope: :attended_event_id }
   validates :attended_event_id, presence: true
 
   belongs_to :attendee, class_name: 'User'
