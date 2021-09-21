@@ -14,7 +14,7 @@ class InvitationsController < ApplicationController
     invitation = Invitation.find(params[:id])
     rsvp = Rsvp.find_by(attended_event_id: invitation.event_id, attendee_id: invitation.invitee_id)
     invitation.destroy
-    rsvp.destroy
+    rsvp.destroy if rsvp
     redirect_to invitations_path event_id: invitation.event_id
   end
 
