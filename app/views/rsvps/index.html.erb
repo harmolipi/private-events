@@ -19,9 +19,9 @@
                 <td><%= link_to user.username, user_path(user), class: "is-fullwidth" %></td>
                 <td>
                   <% if user.invited?(@event.id) %>
-                    <%= link_to "Cancel invite", invitation_path(Invitation.find_by(invitee_id: user.id, event_id: @event.id)), method: :delete, class: "button is-small is-danger" %>
+                    <%= link_to "Cancel invite", rsvp_path(@event.rsvps.find_by(attendee_id: user.id)), method: :delete, class: "button is-small is-danger" %>
                   <% else %>
-                    <%= link_to "Invite", invitations_path(invitee_id: user.id, event_id: @event.id), method: :post, class: "button is-small is-primary" %>
+                    <%= link_to "Invite", rsvps_path(attendee_id: user.id, attended_event_id: @event.id), method: :post, class: "button is-small is-primary" %>
                   <% end %>
                 </td>
                 <td>

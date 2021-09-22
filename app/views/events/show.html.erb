@@ -24,11 +24,11 @@
         <% if user_signed_in? %>
           <footer class="card-footer">
             <% if @event.creator == current_user %>
-              <%= link_to 'Invite guests', invitations_path(event_id: @event.id), method: :get, class: "card-footer-item" %>
-            <% elsif @event.rsvps.exists?(attendee_id: current_user.id) %>
-              <%= link_to "You're attending the event! Cancel?", rsvp_path(attended_event_id: @event.id), method: :delete, class: "card-footer-item" %>
-            <% elsif @event.invitations.exists?(invitee_id: current_user.id) %>
-              <%= link_to "You're invited! Accept?", rsvps_path(attended_event_id: @event.id), method: :post, class: "card-footer-item" %>
+              <%= link_to 'Invite guests', rsvps_path(attended_event_id: @event.id), method: :get, class: "card-footer-item" %>
+            <% elsif !@rsvp.nil? && @rsvp.accepted? %>
+              <%= link_to "You're attending the event! Cancel?", rsvp_path(@rsvp), method: :delete, class: "card-footer-item" %>
+            <% elsif @rsvp %>
+              <%= link_to "You're invited! Accept?", rsvp_path(@rsvp, accepted: true), method: :patch, class: "card-footer-item" %>
             <% end %>
             <% if @event.creator == current_user %>
               <%= link_to 'Edit', edit_event_path(@event), class: "card-footer-item" %>
@@ -40,10 +40,10 @@
 
       <article class="panel">
         <p class="panel-heading">Attending:</p>
-        <% if @event.rsvps.none? %>
+        <% if @event.rsvps.where(accepted: true).none? %>
           <div class="panel-block">No attendees yet!</div>
         <% else %>
-          <% @event.rsvps.each do |rsvp| %>
+          <% @event.rsvps.where(accepted: true).each do |rsvp| %>
             <%= link_to rsvp.attendee.username, user_path(rsvp.attendee), class: "panel-block" %>
           <% end %>
         <% end %>

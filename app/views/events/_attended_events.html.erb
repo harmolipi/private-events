@@ -1,10 +1,11 @@
 <div class="column is-two-thirds">
-  <% if @user.attended_events.past.none? %>
+  <% if @user.rsvps.past.none? %>
     <article class="card block">
       <p class="card-content">No events found!</p>
     </article>
   <% else %>
-    <% @user.attended_events.past.each do |event| %>
+    <% @user.rsvps.past.each do |rsvp| %>
+      <% event = rsvp.attended_event %>
       <article class="card block">
         <div class="card-header">
           <div class="card-header-title">

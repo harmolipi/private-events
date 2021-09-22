@@ -10,6 +10,8 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    @event = Event.find(params[:id])
+    @rsvp = Rsvp.find_by(attended_event_id: @event.id, attendee_id: current_user.id) if user_signed_in? && Rsvp.exists?(attended_event_id: @event.id, attendee_id: current_user.id)
   end
 
   # GET /events/new
